@@ -1,3 +1,18 @@
-<h1>
-  {{title}}
-</h1>
+<div class="row margin-top">
+  <div class="small-4 columns" *ngFor="let app of apps">
+    <div class="callout">
+      <h5>{{app.name}}</h5>
+      <table>
+        <tr *ngFor="let env of app.environments">
+          <td>{{env.name}}</td>
+          <td>
+            <span [hidden]="!env.currentVersion">{{env.currentVersion}}</span>
+            <span [hidden]="env.currentVersion">?</span>
+            <small [hidden]="!env.previousVersion">({{env.previousVersion}})</small></td>
+          <td>{{env.since | date:'dd.MM.yy'}}</td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
